@@ -22,9 +22,6 @@ contract AMM is ERC20 {
         uint bal0 = token0.balanceOf(address(this));
         uint bal1 = token1.balanceOf(address(this));
 
-        token0.transferFrom(msg.sender, address(this), amt0);
-        token1.transferFrom(msg.sender, address(this), amt1);
-
         uint shares = totalSupply == 0
                       ? min(amt0, amt1)
                       : min(mul(totalSupply, amt0) / bal0,
@@ -32,6 +29,9 @@ contract AMM is ERC20 {
 
         balanceOf[msg.sender] = add(balanceOf[msg.sender], shares);
         totalSupply = add(totalSupply, shares);
+
+        token0.transferFrom(msg.sender, address(this), amt0);
+        token1.transferFrom(msg.sender, address(this), amt1);
     }
 
     // exit allows the caller to exchange shares pool shares for the
@@ -47,8 +47,8 @@ contract AMM is ERC20 {
         token1.transfer(msg.sender, amt1);
     }
 
-    // swap allows the caller to exchange amt of src for the other token in the
-    // pair at a price given by the constant product formula: x * y == k.
+    // swap allows the caller to exchange amt of src for dst at a price given
+    // by the constant product formula: x * y == k.
     function swap(address src, address dst, uint amt) external {
         require(src != dst, "no self swap");
         require(src == address(token0) || src == address(token1), "src not in pair");
