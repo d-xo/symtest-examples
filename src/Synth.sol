@@ -4,8 +4,18 @@ pragma solidity ^0.6.7;
 import {ERC20} from "./ERC20.sol";
 
 /*
- * Synth implements a collateral backed synthetic asset.
- */
+   Synth implements a collateral backed synthetic asset.
+
+   Anyone can mint new synth as long as they provide sufficient backing collateral.
+
+   If the value of the backing value falls below `threshold` times the
+   outstanding synth amount, then that position becomes eligible for liqudation.
+
+   Anyone can liquidate an unsafe position by calling `bite`, where they can
+   buy the backing collateral at a 3% discount.
+
+   The price of synth is set by a trusted authority.
+*/
 contract Synth is ERC20 {
     // --- Auth ---
 
