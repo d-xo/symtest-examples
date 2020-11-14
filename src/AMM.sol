@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity ^0.6.7;
 
-import {Math} from "./Math.sol";
 import {ERC20} from "./ERC20.sol";
 
 contract AMM is ERC20 {

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 pragma solidity ^0.6.7;
 
-import {Math} from "./Math.sol";
+import {DSMath} from "ds-math/math.sol";
 
-contract ERC20 is Math {
+contract ERC20 is DSMath {
     string  public constant name = "Token";
     string  public constant symbol = "TKN";
     uint8   public decimals = 18;
