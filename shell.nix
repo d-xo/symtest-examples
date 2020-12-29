@@ -3,9 +3,11 @@ let
   pkgs = import sources.dapptools {};
 in
   pkgs.mkShell {
-    buildInputs = [
-      pkgs.dapp
-      pkgs.hevm
-      pkgs.bashInteractive
+    buildInputs = with pkgs; [
+      dapp
+      hevm
+      bashInteractive
+      solc-static-versions.solc_0_7_5
     ];
+    DAPP_SOLC="solc-0.7.5";
   }

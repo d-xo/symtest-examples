@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity ^0.6.7;
+pragma solidity ^0.7.5;
 
 import {ERC20} from "./ERC20.sol";
 
@@ -56,7 +56,7 @@ contract Synth is ERC20 {
     function free(uint wad) external {
         Vault storage vault = vaults[msg.sender];
 
-        uint backing = wmul(sub(vault.locked, wad), price);
+        uint backing     = wmul(sub(vault.locked, wad), price);
         uint outstanding = wmul(vault.minted, threshold);
         require(backing > outstanding, "insufficient backing collateral");
 
