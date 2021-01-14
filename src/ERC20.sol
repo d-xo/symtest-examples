@@ -45,7 +45,7 @@ contract MintableERC20 is ERC20 {
     modifier auth() { require(msg.sender == owner, "unauthorized"); _; }
 
     // --- Init ---
-    constructor() public {
+    constructor() {
         owner = msg.sender;
     }
 

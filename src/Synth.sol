@@ -38,7 +38,7 @@ contract Synth is ERC20 {
 
     // --- Init ---
 
-    constructor(address _collateral, uint _discount, uint _threshold) public {
+    constructor(address _collateral, uint _discount, uint _threshold) {
         owner = msg.sender;
         collateral = ERC20(_collateral);
         discount = _discount;

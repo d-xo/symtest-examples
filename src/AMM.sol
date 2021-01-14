@@ -7,7 +7,7 @@ contract AMM is ERC20 {
     ERC20 token0;
     ERC20 token1;
 
-    constructor(address _token0, address _token1) public {
+    constructor(address _token0, address _token1) {
         token0 = ERC20(_token0);
         token1 = ERC20(_token1);
     }
