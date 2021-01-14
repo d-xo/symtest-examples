@@ -60,7 +60,7 @@ contract AMM is ERC20 {
 
         uint out = sub(
             ERC20(dst).balanceOf(address(this)),
-            K / ERC20(src).balanceOf(address(this))
+            K / ERC20(src).balanceOf(address(this)) + 1 // rounding
         );
 
         ERC20(dst).transfer(msg.sender, out);
